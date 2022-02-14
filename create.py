@@ -27,8 +27,12 @@ print('''<!doctype html>
     {listStr}
   </ol>
   <a href = "create.py">create</a>
-<h2>{title}</h2>
-<p>{des}</p>
+  <form action="process_create.py" method="post">
+      <p><input type="text" name="title" placeholder="title"></p>
+      <p><textarea rows="4" name="description" placeholder="description"></textarea></p>
+      <p><input type="submit"></p>
+  </form>
+  </form>
 </body>
 </html>
 '''.format(title=pageID, des=description, listStr=listStr)) #파일구현및 본문기능
