@@ -22,7 +22,6 @@ print('''<!doctype html>
 </head>
 <body>
 <h1><a href="index.py">WEB</a></h1>
-<div id="grid">
   <ol>
     {listStr}
   </ol>
