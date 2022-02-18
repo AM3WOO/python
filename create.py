@@ -1,11 +1,7 @@
 #!python
 print("Content-Type: text/html")
 print()
-import cgi, os
-files = os.listdir('data')
-listStr = ''
-for item in files:
-        listStr = listStr + '<li><a href="index.py?id={name}">{name}</a></li>'.format(name=item) #listStr = listStr(기존의값) + ~
+import cgi, os, view
 form = cgi.FieldStorage()
 if 'id' in form:
     pageID = form["id"].value
@@ -34,4 +30,4 @@ print('''<!doctype html>
   </form>
 </body>
 </html>
-'''.format(title=pageID, des=description, listStr=listStr)) #파일구현및 본문기능
+'''.format(title=pageID, des=description, listStr=view.getList())) #파일구현및 본문기능

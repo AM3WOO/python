@@ -1,15 +1,13 @@
 #!python
 print("Content-Type: text/html")
 print()
-import cgi, os
-files = os.listdir('data')
-listStr = ''
-for item in files:
-        listStr = listStr + '<li><a href="index.py?id={name}">{name}</a></li>'.format(name=item) #listStr = listStr(기존의값) + ~
+import cgi, os, view
 form = cgi.FieldStorage()
 if 'id' in form:
     pageID = form["id"].value
     description = open('data/'+pageID, 'r').read() #파일구현및 본문기능구현
+    description = description.replace('<', '&lt;') #xss(보안)
+    description = description.replace('>', '&gt;') #xss(보안)
     updatelink = '<a href = "update.py?id={}">update</a>'.format(pageID)
     deleteaction = '''
         <form action="process_delete.py" method="post">
@@ -42,4 +40,8 @@ print('''<!doctype html>
 <p>{des}</p>
 </body>
 </html>
-'''.format(title=pageID, des=description, listStr=listStr, updatelink=updatelink, deleteaction=deleteaction)) #파일구현및 본문기능
+'''.format(title=pageID,
+           des=description,
+           listStr=view.getList(), #moduel
+           updatelink=updatelink,
+           deleteaction=deleteaction)) #파일구현및 본문기능
