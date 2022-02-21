@@ -12,3 +12,11 @@ print(hello) #안녕하세요
 
 #len (문자열의 길이)
 print(len("안녕하세요"))
+
+#복합대입연산자
+number = 100
+number *= 10 #number = number * 10
+print(number)
+string = "안녕하세요"
+string +="!" #string = sting + "!""
+print(string)
